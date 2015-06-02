@@ -212,6 +212,7 @@ BinaryTreeNode* binary_tree_free(BinaryTreeNode* parent) {
   return NULL;
 }
 
+// Check this function
 BinaryTreeNode* binary_tree_remove_node(BinaryTreeNode* parent, int value, int* aux) {
   BinaryTreeNode* temp_node;
   
