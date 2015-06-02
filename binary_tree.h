@@ -11,4 +11,13 @@ BinaryTreeNode* binary_tree_insert(int, BinaryTreeNode*, int*);
 
 // Right Rotation
 BinaryTreeNode* binary_tree_balance_to_right(BinaryTreeNode*, int*); 
-BinaryTreeNode* binary_tree_create_node(); 
+BinaryTreeNode* binary_tree_create_node(void); 
+void binary_tree_print(BinaryTreeNode*, int); 
+
+BinaryTreeNode* binary_tree_right_balance(BinaryTreeNode*, int*);
+BinaryTreeNode* binary_tree_left_balance(BinaryTreeNode*, int*);
+
+BinaryTreeNode* binary_tree_free(BinaryTreeNode*);
+BinaryTreeNode* binary_tree_remove_node(BinaryTreeNode*, int, int*);
+
+BinaryTreeNode* binary_tree_prepare_node_to_remove(BinaryTreeNode*, BinaryTreeNode*, int*);
