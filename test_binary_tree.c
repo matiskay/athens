@@ -20,21 +20,24 @@ static char * test_binary_tree_creation() {
   aux = 0;
   node = NULL;
 
-  node = binary_tree_insert(50, node, &aux);
-  node = binary_tree_insert(10, node, &aux);
-  node = binary_tree_insert(30, node, &aux);
-  node = binary_tree_insert(40, node, &aux);
-  node = binary_tree_insert(55, node, &aux);
-  node = binary_tree_insert(25, node, &aux);
-  node = binary_tree_insert(70, node, &aux);
+  printf("Initial configuration: \n");
   node = binary_tree_insert(100, node, &aux);
   node = binary_tree_insert(120, node, &aux);
-  node = binary_tree_insert(20, node, &aux);
-  node = binary_tree_insert(5, node, &aux);
-  node = binary_tree_insert(15, node, &aux);
+  node = binary_tree_insert(50, node, &aux);
+
 
   binary_tree_print(node, 1);
   printf("\n");
+  printf("\n");
+  printf("-----------------------------------\n");
+  printf("\n");
+
+  node = binary_tree_remove_node(node, 100, &aux);
+
+  printf("Removing Node: \n");
+  binary_tree_print(node, 1);
+  printf("\n");
+  printf("-----------------------------------\n");
 
   mu_assert("erro test_binary_tree_creation", 1 == 1);
   return 0;

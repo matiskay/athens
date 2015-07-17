@@ -242,7 +242,10 @@ BinaryTreeNode* binary_tree_remove_node(BinaryTreeNode* parent, int value, int* 
         *aux = 1;
         free(temp_node);
       } else {
+        //printf("[DEBUG] \n");
+
         temp_node->left = binary_tree_prepare_node_to_remove(temp_node->left, temp_node, aux);
+
         if (*aux != 0) {
           parent = binary_tree_right_balance(parent, aux);
         }
