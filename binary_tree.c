@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include "binary_tree.h"
 
-#define IS_RIGHT_BALANCE 1
-#define IS_BALANCE 0
-#define IS_LEFT_BALANCE -1
+// TODO: USE enum
+#define RIGHT_BALANCE_STATUS 1
+#define BALANCE_STATUS 0
+#define LEFT_BALANCE_STATUS -1
 
 // TODO: Rename aux to parent_balance_status
 BinaryTreeNode* binary_tree_insert(int value, BinaryTreeNode* parent, int* aux) {
@@ -23,21 +24,21 @@ BinaryTreeNode* binary_tree_insert(int value, BinaryTreeNode* parent, int* aux) 
 
         if (*aux == 1) {
             switch (parent->balance_status) {
-                case IS_RIGHT_BALANCE:
-                    parent->balance_status = 0;
+                case RIGHT_BALANCE_STATUS:
+                    parent->balance_status = BALANCE_STATUS;
                     *aux = 0;
                     break;
-                case IS_BALANCE:
-                    parent->balance_status = -1;
+                case BALANCE_STATUS:
+                    parent->balance_status = LEFT_BALANCE_STATUS;
                     break;
-                case IS_LEFT_BALANCE:
+                case LEFT_BALANCE_STATUS:
                     aux_binary_tree_node1 = parent->left;
 
-                    if (aux_binary_tree_node1->balance_status == IS_LEFT_BALANCE) {
+                    if (aux_binary_tree_node1->balance_status == LEFT_BALANCE_STATUS) {
                         // Left Left Rotation
                         parent->left = aux_binary_tree_node1->right;
                         aux_binary_tree_node1->right = parent;
-                        parent->balance_status = IS_BALANCE;
+                        parent->balance_status = BALANCE_STATUS;
                         parent = aux_binary_tree_node1;
                     } else {
                         // Left Right Rotation
@@ -47,16 +48,16 @@ BinaryTreeNode* binary_tree_insert(int value, BinaryTreeNode* parent, int* aux) 
                         parent->left = aux_binary_tree_node2->right;
                         aux_binary_tree_node2->right = parent;
 
-                        if (aux_binary_tree_node2->balance_status == IS_LEFT_BALANCE) {
-                            parent->balance_status = IS_RIGHT_BALANCE;
+                        if (aux_binary_tree_node2->balance_status == LEFT_BALANCE_STATUS) {
+                            parent->balance_status = RIGHT_BALANCE_STATUS;
                         } else  {
-                            parent->balance_status = IS_BALANCE;
+                            parent->balance_status = BALANCE_STATUS;
                         }
 
-                        if (aux_binary_tree_node2->balance_status == IS_RIGHT_BALANCE) {
-                            aux_binary_tree_node1->balance_status = IS_LEFT_BALANCE;
+                        if (aux_binary_tree_node2->balance_status == RIGHT_BALANCE_STATUS) {
+                            aux_binary_tree_node1->balance_status = LEFT_BALANCE_STATUS;
                         } else {
-                            aux_binary_tree_node1->balance_status = IS_BALANCE;
+                            aux_binary_tree_node1->balance_status = BALANCE_STATUS;
                         }
 
                         parent = aux_binary_tree_node2;
@@ -72,21 +73,21 @@ BinaryTreeNode* binary_tree_insert(int value, BinaryTreeNode* parent, int* aux) 
 
         if (*aux == 1) {
             switch (parent->balance_status) {
-                case IS_LEFT_BALANCE:
-                    parent->balance_status = IS_BALANCE;
+                case LEFT_BALANCE_STATUS:
+                    parent->balance_status = BALANCE_STATUS;
                     *aux = 0;
                     break;
-                case IS_BALANCE:
+                case BALANCE_STATUS:
                     parent->balance_status = 1;
                     break;
-                case IS_RIGHT_BALANCE:
+                case RIGHT_BALANCE_STATUS:
                     aux_binary_tree_node1 = parent->right;
 
-                    if (aux_binary_tree_node1->balance_status == IS_RIGHT_BALANCE) {
+                    if (aux_binary_tree_node1->balance_status == RIGHT_BALANCE_STATUS) {
                         // Rotation Right Right
                         parent->right = aux_binary_tree_node1->left;
                         aux_binary_tree_node1->left = parent;
-                        parent->balance_status = IS_BALANCE;
+                        parent->balance_status = BALANCE_STATUS;
                         parent = aux_binary_tree_node1;
                     } else {
                         // Rotation Right Left
@@ -96,22 +97,22 @@ BinaryTreeNode* binary_tree_insert(int value, BinaryTreeNode* parent, int* aux) 
                         parent->right = aux_binary_tree_node2->left;
                         aux_binary_tree_node2->left = parent;
 
-                        if (aux_binary_tree_node2->balance_status == IS_RIGHT_BALANCE) {
-                            parent->balance_status = IS_LEFT_BALANCE;
+                        if (aux_binary_tree_node2->balance_status == RIGHT_BALANCE_STATUS) {
+                            parent->balance_status = LEFT_BALANCE_STATUS;
                         } else {
-                            parent->balance_status = IS_BALANCE;
+                            parent->balance_status = BALANCE_STATUS;
                         }
 
-                        if (aux_binary_tree_node2->balance_status == IS_LEFT_BALANCE) {
-                            aux_binary_tree_node1->balance_status = IS_RIGHT_BALANCE;
+                        if (aux_binary_tree_node2->balance_status == LEFT_BALANCE_STATUS) {
+                            aux_binary_tree_node1->balance_status = RIGHT_BALANCE_STATUS;
                         } else {
-                            aux_binary_tree_node1->balance_status = IS_BALANCE;
+                            aux_binary_tree_node1->balance_status = BALANCE_STATUS;
                         }
 
                         parent = aux_binary_tree_node2;
                     }
 
-                    parent->balance_status = IS_BALANCE;
+                    parent->balance_status = BALANCE_STATUS;
                     *aux = 0;
             }
         }
@@ -145,34 +146,34 @@ void binary_tree_print(BinaryTreeNode* parent, int level) {
     }
 }
 
-BinaryTreeNode* binary_tree_right_balance(BinaryTreeNode* parent, int* aux) {
+BinaryTreeNode* binary_tree_balance_to_right(BinaryTreeNode *parent, int *aux) {
     BinaryTreeNode* aux_binary_tree_node1;
     BinaryTreeNode* aux_binary_tree_node2;
 
     switch (parent->balance_status) {
-        case IS_LEFT_BALANCE:
-            parent->balance_status = IS_BALANCE;
+        case LEFT_BALANCE_STATUS:
+            parent->balance_status = BALANCE_STATUS;
             break;
 
-        case IS_BALANCE:
-            parent->balance_status = IS_RIGHT_BALANCE;
+        case BALANCE_STATUS:
+            parent->balance_status = RIGHT_BALANCE_STATUS;
             *aux = 0;
             break;
 
-        case IS_RIGHT_BALANCE:
+        case RIGHT_BALANCE_STATUS:
             aux_binary_tree_node1 = parent->right;
 
             if (aux_binary_tree_node1->balance_status >= 0) {
                 // Right Right Rotation
                 parent->right = aux_binary_tree_node1->left;
                 aux_binary_tree_node1->left = parent;
-                if (aux_binary_tree_node1->balance_status == 0) {
+                if (aux_binary_tree_node1->balance_status == BALANCE_STATUS) {
                     parent->balance_status = 1;
-                    aux_binary_tree_node1->balance_status = -1;
+                    aux_binary_tree_node1->balance_status = LEFT_BALANCE_STATUS;
                     *aux = 0;
                 } else {
 //                    parent->balance_status = 0;
-                    aux_binary_tree_node1->balance_status = 0;
+                    aux_binary_tree_node1->balance_status = BALANCE_STATUS;
                 }
                 parent = aux_binary_tree_node1;
             } else {
@@ -183,20 +184,20 @@ BinaryTreeNode* binary_tree_right_balance(BinaryTreeNode* parent, int* aux) {
                 parent->right = aux_binary_tree_node2->left;
                 aux_binary_tree_node2->left = parent;
 
-                if (aux_binary_tree_node2->balance_status == 1) {
-                    parent->balance_status = -1;
+                if (aux_binary_tree_node2->balance_status == RIGHT_BALANCE_STATUS) {
+                    parent->balance_status = LEFT_BALANCE_STATUS;
                 } else {
-                    parent->balance_status = 0;
+                    parent->balance_status = BALANCE_STATUS;
                 }
 
-                if (aux_binary_tree_node2->balance_status == -1) {
-                    aux_binary_tree_node1->balance_status = 1;
+                if (aux_binary_tree_node2->balance_status == LEFT_BALANCE_STATUS) {
+                    aux_binary_tree_node1->balance_status = RIGHT_BALANCE_STATUS;
                 } else {
-                    aux_binary_tree_node1->balance_status = 0;
+                    aux_binary_tree_node1->balance_status = BALANCE_STATUS;
                 }
 
                 parent = aux_binary_tree_node2;
-                aux_binary_tree_node2->balance_status = 0;
+                aux_binary_tree_node2->balance_status = BALANCE_STATUS;
             }
     }
 
@@ -223,12 +224,12 @@ BinaryTreeNode* binary_tree_remove_node(BinaryTreeNode* parent, int value, int* 
             parent->left = binary_tree_remove_node(parent->left, value, aux);
 
             if (*aux != 0) {
-                parent = binary_tree_right_balance(parent, aux);
+                parent = binary_tree_balance_to_right(parent, aux);
             }
         } else if (value > parent->value) {
             parent->right = binary_tree_remove_node(parent->right, value, aux);
             if (*aux != 0) {
-                parent = binary_tree_left_balance(parent, aux);
+                parent = binary_tree_balance_to_left(parent, aux);
             }
         } else {
             temp_node = parent;
@@ -247,7 +248,7 @@ BinaryTreeNode* binary_tree_remove_node(BinaryTreeNode* parent, int value, int* 
                 temp_node->left = binary_tree_prepare_node_to_remove(temp_node->left, temp_node, aux);
 
                 if (*aux != 0) {
-                    parent = binary_tree_right_balance(parent, aux);
+                    parent = binary_tree_balance_to_right(parent, aux);
                 }
             }
         }
@@ -264,7 +265,7 @@ BinaryTreeNode* binary_tree_prepare_node_to_remove(BinaryTreeNode* node, BinaryT
     if (node->right != NULL) {
         node->right = binary_tree_prepare_node_to_remove(node->right, temp_node, aux);
         if (*aux) {
-            node = binary_tree_left_balance(node, aux);
+            node = binary_tree_balance_to_left(node, aux);
         }
     } else {
         candidate_node = node;
@@ -277,17 +278,17 @@ BinaryTreeNode* binary_tree_prepare_node_to_remove(BinaryTreeNode* node, BinaryT
     return node;
 }
 
-BinaryTreeNode* binary_tree_left_balance(BinaryTreeNode* parent, int* aux) {
+BinaryTreeNode* binary_tree_balance_to_left(BinaryTreeNode *parent, int *aux) {
     BinaryTreeNode* aux_binary_tree_node1;
     BinaryTreeNode* aux_binary_tree_node2;
 
     switch (parent->balance_status) {
         case 1:
-            parent->balance_status = 0;
+            parent->balance_status = BALANCE_STATUS;
             break;
 
         case 0:
-            parent->balance_status = -1;
+            parent->balance_status = RIGHT_BALANCE_STATUS;
             *aux = 0;
             break;
 
@@ -299,13 +300,13 @@ BinaryTreeNode* binary_tree_left_balance(BinaryTreeNode* parent, int* aux) {
                 parent->left = aux_binary_tree_node1->right;
                 aux_binary_tree_node1->right = parent;
 
-                if (aux_binary_tree_node1->balance_status == 0) {
-                    parent->balance_status = -1;
-                    aux_binary_tree_node1->balance_status = 1;
+                if (aux_binary_tree_node1->balance_status == BALANCE_STATUS) {
+                    parent->balance_status = LEFT_BALANCE_STATUS;
+                    aux_binary_tree_node1->balance_status = RIGHT_BALANCE_STATUS;
                     *aux = 0;
                 } else {
-                    parent->balance_status = 0;
-                    aux_binary_tree_node1 = 0;
+                    parent->balance_status = BALANCE_STATUS;
+                    aux_binary_tree_node1->balance_status = BALANCE_STATUS;
                 }
 
                 parent = aux_binary_tree_node1;
@@ -318,20 +319,20 @@ BinaryTreeNode* binary_tree_left_balance(BinaryTreeNode* parent, int* aux) {
                 parent->left = aux_binary_tree_node2->right;
                 aux_binary_tree_node2->right = parent;
 
-                if (aux_binary_tree_node2->balance_status == -1) {
-                    parent->balance_status = 1;
+                if (aux_binary_tree_node2->balance_status == LEFT_BALANCE_STATUS) {
+                    parent->balance_status = RIGHT_BALANCE_STATUS;
                 } else {
-                    parent->balance_status = 0;
+                    parent->balance_status = BALANCE_STATUS;
                 }
 
-                if (aux_binary_tree_node2->balance_status == 1) {
-                    aux_binary_tree_node1->balance_status = -1;
+                if (aux_binary_tree_node2->balance_status == RIGHT_BALANCE_STATUS) {
+                    aux_binary_tree_node1->balance_status = LEFT_BALANCE_STATUS;
                 } else {
-                    aux_binary_tree_node1->balance_status = 0;
+                    aux_binary_tree_node1->balance_status = BALANCE_STATUS;
                 }
 
                 parent = aux_binary_tree_node2;
-                aux_binary_tree_node2->balance_status = 0;
+                aux_binary_tree_node2->balance_status = BALANCE_STATUS;
             }
     }
 
