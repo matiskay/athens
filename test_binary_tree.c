@@ -15,32 +15,35 @@
 int tests_run = 0;
 
 static char * test_binary_tree_creation() {
-  int aux;
-  BinaryTreeNode* node;
-  aux = 0;
-  node = NULL;
+    int aux;
+    BinaryTreeNode* node;
+    aux = 0;
+    node = NULL;
 
-  printf("Initial configuration: \n");
-  node = binary_tree_insert(100, node, &aux);
-  node = binary_tree_insert(120, node, &aux);
-  node = binary_tree_insert(50, node, &aux);
+    printf("Initial configuration: \n");
+    node = binary_tree_insert(10, node, &aux);
+    node = binary_tree_insert(20, node, &aux);
+    node = binary_tree_insert(30, node, &aux);
+    node = binary_tree_insert(40, node, &aux);
+    node = binary_tree_insert(50, node, &aux);
+    node = binary_tree_insert(60, node, &aux);
 
 
-  binary_tree_print(node, 1);
-  printf("\n");
-  printf("\n");
-  printf("-----------------------------------\n");
-  printf("\n");
+    binary_tree_print(node, 1);
+    printf("\n");
+    printf("\n");
+    printf("-----------------------------------\n");
+    printf("\n");
 
-  node = binary_tree_remove_node(node, 100, &aux);
+    node = binary_tree_remove_node(node, 50, &aux);
 
-  printf("Removing Node: \n");
-  binary_tree_print(node, 1);
-  printf("\n");
-  printf("-----------------------------------\n");
+    printf("Removing Node: %d \n", 50);
+    binary_tree_print(node, 1);
+    printf("\n");
+    printf("-----------------------------------\n");
 
-  mu_assert("erro test_binary_tree_creation", 1 == 1);
-  return 0;
+    mu_assert("erro test_binary_tree_creation", 1 == 1);
+    return 0;
 }
 
 static char * test_unit() {
