@@ -189,3 +189,5 @@ athens:020> remove 100
                 20 (0) 
                         10 (0)
 athens:021> exit
+
+http://www.csee.umbc.edu/courses/undergraduate/341/fall98/frey/ClassNotes/Class18/avl.html
