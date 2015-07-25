@@ -1,4 +1,4 @@
-all:
+all: clean
 	 gcc -c binary_tree.c
 	 gcc -c main.c
 	 gcc -o main binary_tree.o main.o
@@ -12,9 +12,9 @@ test_binary_tree: clean
 test:	 test_binary_tree
 
 clean:
-	 rm *.out || exit 0
+	 rm *.o || exit 0
 
-run:
+run: clean
 	 gcc -c binary_tree.c
 	 gcc -c main.c
 	 gcc -o main binary_tree.o main.o
