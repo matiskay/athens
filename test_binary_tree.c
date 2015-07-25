@@ -27,6 +27,11 @@ static char * test_binary_tree_creation() {
     node = binary_tree_insert(40, node, &aux);
     node = binary_tree_insert(50, node, &aux);
     node = binary_tree_insert(60, node, &aux);
+    node = binary_tree_insert(80, node, &aux);
+    node = binary_tree_insert(90, node, &aux);
+    node = binary_tree_insert(100, node, &aux);
+    node = binary_tree_insert(110, node, &aux);
+    node = binary_tree_insert(120, node, &aux);
 
 
     binary_tree_print(node, 1);
@@ -35,9 +40,37 @@ static char * test_binary_tree_creation() {
     printf("-----------------------------------\n");
     printf("\n");
 
-    node = binary_tree_remove_node(node, 50, &aux);
+    node = binary_tree_remove_node(node, 90, &aux);
 
-    printf("Removing Node: %d \n", 50);
+    printf("Removing Node: %d \n", 90);
+    binary_tree_print(node, 1);
+    printf("\n");
+    printf("-----------------------------------\n");
+
+    node = binary_tree_remove_node(node, 100, &aux);
+
+    printf("Removing Node: %d \n", 100);
+    binary_tree_print(node, 1);
+    printf("\n");
+    printf("-----------------------------------\n");
+
+    node = binary_tree_remove_node(node, 110, &aux);
+
+    printf("Removing Node: %d \n", 110);
+    binary_tree_print(node, 1);
+    printf("\n");
+    printf("-----------------------------------\n");
+
+    node = binary_tree_remove_node(node, 80, &aux);
+
+    printf("Removing Node: %d \n", 80);
+    binary_tree_print(node, 1);
+    printf("\n");
+    printf("-----------------------------------\n");
+
+    node = binary_tree_remove_node(node, 120, &aux);
+
+    printf("Removing Node: %d \n", 120);
     binary_tree_print(node, 1);
     printf("\n");
     printf("-----------------------------------\n");
