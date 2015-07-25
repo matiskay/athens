@@ -29,3 +29,163 @@ gcc -c program-that-depends-of-module1.c
 gcc -o program.out module1.o program-that-depends-of-module1.o
 ./program.out
 
+
+# Test
+
+athens:001> help
+   exit                                     :      Exit the program.
+   help                                     :      Help for the program.
+   insert <integer-value>                   :      Insert <integer-value> node to the binary tree.
+   remove <integer-value>                   :      Remove <integer-value> node to the binary tree.
+   destroy                                  :      Destroy the current binary tree.
+athens:002> insert 10
+ 
+ 10 (0)
+athens:003> insert 20
+ 
+        20 (0) 
+ 10 (1)
+athens:004> insert 30
+ 
+        30 (0) 
+ 20 (0) 
+        10 (0)
+athens:005> insert 40
+ 
+                40 (0) 
+        30 (1) 
+ 20 (1) 
+        10 (0)
+athens:006> insert 50
+ 
+                50 (0) 
+        40 (0) 
+                30 (0) 
+ 20 (1) 
+        10 (0)
+athens:007> insert 60
+ 
+                60 (0) 
+        50 (1) 
+ 40 (0) 
+                30 (0) 
+        20 (0) 
+                10 (0)
+athens:008> insert 70
+ 
+                70 (0) 
+        60 (0) 
+                50 (0) 
+ 40 (0) 
+                30 (0) 
+        20 (0) 
+                10 (0)
+athens:009> insert 80
+ 
+                        80 (0) 
+                70 (1) 
+        60 (1) 
+                50 (0) 
+ 40 (1) 
+                30 (0) 
+        20 (0) 
+                10 (0)
+athens:010> insert 90
+ 
+                        90 (0) 
+                80 (0) 
+                        70 (0) 
+        60 (1) 
+                50 (0) 
+ 40 (1) 
+                30 (0) 
+        20 (0) 
+                10 (0)
+athens:011> insert 100
+ 
+                        100 (0) 
+                90 (1) 
+        80 (0) 
+                        70 (0) 
+                60 (0) 
+                        50 (0) 
+ 40 (1) 
+                30 (0) 
+        20 (0) 
+                10 (0)
+athens:012> inserto 110
+inserto 110 is an undefined command 
+athens:013> inseert 110
+inseert 110 is an undefined command 
+athens:014> insert 110
+ 
+                        110 (0) 
+                100 (0) 
+                        90 (0) 
+        80 (0) 
+                        70 (0) 
+                60 (0) 
+                        50 (0) 
+ 40 (1) 
+                30 (0) 
+        20 (0) 
+                10 (0)
+athens:015> insert 120
+ 
+                        120 (0) 
+                110 (1) 
+        100 (1) 
+                90 (0) 
+ 80 (0) 
+                        70 (0) 
+                60 (0) 
+                        50 (0) 
+        40 (0) 
+                        30 (0) 
+                20 (0) 
+                        10 (0)
+athens:016> delete 90
+delete 90 is an undefined command 
+athens:017> help
+   exit                                     :      Exit the program.
+   help                                     :      Help for the program.
+   insert <integer-value>                   :      Insert <integer-value> node to the binary tree.
+   remove <integer-value>                   :      Remove <integer-value> node to the binary tree.
+   destroy                                  :      Destroy the current binary tree.
+athens:018> remove 90
+ 
+                120 (0) 
+        110 (0) 
+                100 (0) 
+ 80 (1) 
+                        70 (0) 
+                60 (0) 
+                        50 (0) 
+        40 (0) 
+                        30 (0) 
+                20 (0) 
+                        10 (0)
+athens:019> remove 110
+ 
+                120 (0) 
+        100 (1) 
+ 80 (1) 
+                        70 (0) 
+                60 (0) 
+                        50 (0) 
+        40 (0) 
+                        30 (0) 
+                20 (0) 
+                        10 (0)
+athens:020> remove 100
+ 
+        120 (0) 
+ 80 (0) 
+                        70 (0) 
+                60 (0) 
+                        50 (0) 
+        40 (0) 
+                        30 (0) 
+                20 (0) 
+                        10 (0)
+athens:021> exit
